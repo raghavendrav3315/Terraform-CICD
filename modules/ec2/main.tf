@@ -11,3 +11,7 @@ resource "aws_instance" "terrafrom-cicd-ec2" {
     Name = "terrafrom-cicd-ec2"
   }
 }
+
+resource "aws_s3_bucket" "teraform-bucket-temp12"{
+  bucket = "teraform-bucket-temp12"
+}
