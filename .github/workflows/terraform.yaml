@@ -1,0 +1,38 @@
+name: terraform deployment
+on: 
+  push:
+    branches:
+      - master
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      -name: chekout
+      uses: actions/checkout@v4
+
+      -name: setup terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: 1.15.5
+      
+      -name: aws configure
+      uses: aws-action/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS-ACCESS-KEY-ID }}
+        aws-secret-access-key: ${{ secrets.AWS-SECRET-ACCESS-KEY }}
+        aws-region: us-east-1
+
+      -name: terraform init
+      run: terraform init
+
+      -name: terraform format checking
+      run: terraform fmt -check
+
+      -name: terraform validate   
+      run: terraform validate
+
+      -name: terraform plan
+      run: terraform pan
+
+      -name: terraform apply
+      run: terraform apply -auto-approve
