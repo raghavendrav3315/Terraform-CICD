@@ -1,8 +1,8 @@
-terraform{
-    backend "s3" {
-        bucket = "terraform-backend-for-cicd"
-        key    = "ec2/terraform.tfstate"
-        region = "us-east-1"
-        use_lockfile = true
-}
+terraform {
+  backend "s3" {
+    bucket       = "terraform-backend-for-cicd"
+    key          = "ec2/terraform.tfstate"
+    region       = "us-east-1"
+    use_lockfile = true
+  }
 }
